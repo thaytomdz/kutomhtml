@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lời xin lỗi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+            margin: auto;
+            transform: scale(0.9);
+            animation: fadeIn 1s ease-out, scaleUp 0.5s 1s ease-out forwards;
+            position: relative;
+            z-index: 2;
+        }
+        h1 {
+            color: #d9534f;
+            animation: slideIn 1s ease-out;
+        }
+        p {
+            font-size: 18px;
+            color: #555;
+            line-height: 1.6;
+            animation: fadeInText 1.5s ease-out 1.5s forwards;
+        }
+        .btn {
+            background-color: #5bc0de;
+            color: #fff;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            margin-top: 10px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #31b0d5;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-direction: column;  /* Đặt các nút theo chiều dọc */
+            margin-top: 20px;
+            align-items: center; /* Canh giữa các nút */
+        }
+
+        .btn-group .btn-yes {
+            background-color: #28a745;
+        }
+
+        .btn-group .btn-no {
+            background-color: #dc3545;
+        }
+
+        /* Keyframe animations */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes scaleUp {
+            0% {
+                transform: scale(0.9);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideIn {
+            0% {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInText {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Trái tim bay */
+        @keyframes heartAnimation {
+            0% {
+                transform: scale(0) translate(0, 0);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.5) translate(100px, 100px);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(0) translate(200px, -200px);
+                opacity: 0;
+            }
+        }
+
+        .heart {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: #f66;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            animation: heartAnimation 4s infinite ease-in-out;
+        }
+
+        .cloud {
+            position: absolute;
+            background-color: #fff;
+            border-radius: 50%;
+            width: 120px;
+            height: 60px;
+            animation: moveClouds 10s linear infinite;
+        }
+
+        .cloud:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            animation-duration: 20s;
+        }
+
+        .cloud:nth-child(2) {
+            top: 20%;
+            right: 15%;
+            animation-duration: 25s;
+        }
+
+        .cloud:nth-child(3) {
+            top: 50%;
+            left: 50%;
+            animation-duration: 15s;
+        }
+
+        @keyframes moveClouds {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(100vw);
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="cloud"></div>
+    <div class="cloud"></div>
+    <div class="cloud"></div>
+
+    <div class="container">
+        <h1>CODE BY KUTOM</h1>
+        <p>Gửi Bảo Phương,</p>
+        <p>Xin lỗi em vì thời gian qua đã không liên lạc và động thái gì , a k có ý gì làm tổn thương hay làm gì sai với em , đoạn code nayd a viết chỉ mong e tha thứ cho a thôi . xin lỗi em rất nhiều Trần Bảo Phương.</p>
+        <p>Hy vọng em sẽ hiểu và cho anh cơ hội.</p>
+        
+        <div class="btn-group">
+            <a href="#" class="btn btn-yes" id="btnYes">**ĐỒNG Ý</a>
+            <a href="#" class="btn btn-no" id="btnNo">Không đồng ý</a>
+        </div>
+    </div>
+
+    <!-- Trái tim bay -->
+    <div class="heart" style="top: 10%; left: 30%; animation-delay: 0s;"></div>
+    <div class="heart" style="top: 50%; left: 70%; animation-delay: 1s;"></div>
+    <div class="heart" style="top: 30%; left: 90%; animation-delay: 2s;"></div>
+
+    <script>
+        // Webhook URL
+        const webhookUrl = "https://discord.com/api/webhooks/1310920495784263742/rrGfC26OvvUaAeMALhQtKuieEKSFTDw6holPSfv1e3nbv14pTEOs1MI-LikHvkHRE-hI";
+
+        // Function to send data to webhook
+        function sendWebhookResponse(response) {
+            const data = {
+                content: response
+            };
+
+            fetch(webhookUrl, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log("Webhook response sent successfully:", data);
+            })
+            .catch((error) => {
+                console.error("Error sending webhook response:", error);
+            });
+        }
+
+        // Event listeners for "Đồng ý" and "Không đồng ý"
+        document.getElementById("btnYes").addEventListener("click", function(event) {
+            event.preventDefault();
+            sendWebhookResponse("**ĐỒNG Ý RỒI KÌA HƯNG** - Code By Khánh Hưng");
+        });
+
+        document.getElementById("btnNo").addEventListener("click", function(event) {
+            event.preventDefault();
+            sendWebhookResponse("**CoCaiDauBau** - Code By Khánh Hưng");
+        });
+    </script>
+
+</body>
+</html>
+</html>
